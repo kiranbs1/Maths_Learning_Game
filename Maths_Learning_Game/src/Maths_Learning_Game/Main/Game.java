@@ -64,66 +64,63 @@ public class Game implements Runnable {
 		this.width = width; 	//640
 		this.height = height;	//500
 		this.title = title; 
-		//this is getting the variables passed through from launcher
 		keymangager = new KeyManager();
 		mousemanager = new MouseManager();
 		
 	} 
 	
-	private void init() {  //used in Run() method
-		display = new Display (title,width,height);	// creates display and runs Display constructor
+	private void init() { 
+		display = new Display (title,width,height);	
 		display.getframe().addKeyListener(keymangager);
 		display.getcanvas().addMouseListener(mousemanager);
 		display.getcanvas().addMouseMotionListener(mousemanager);		
-		Asset.init();  //this runs the init() method in the Asset class
-		handler = new Handler(this);	//created from a class		
-		gamecamera = new GameCamera(handler, 0, 0);  //created from a class
+		Asset.init();  
+		handler = new Handler(this);		
+		gamecamera = new GameCamera(handler, 0, 0);
 		
 		Difficulty = 'E';
 		AllSettings = new AllSettings(handler);
 		
 		TorS = new TorS(handler);
-		State.setState(TorS); //IMPORTANT 
+		State.setState(TorS);
 		clip = Audio.BackgroundMusic(AllSettings.getVolume());
 		clip.start(); 
 		rTimer = 60;
 		CurrentScore = 0;
-		
-		//this is where state is set. currently set to gamestate as other states have not been implemented							
+									
 	}
 	
 	
-	private void tick() {  //Used in run()
+	private void tick() { 
 		keymangager.tick();
 		
-		if (State.getState() != null) {	//State set in init
-		State.getState().tick(); //Look at current state being run not the State class
+		if (State.getState() != null) {	
+		State.getState().tick(); 
 		}
 
 	}
 	
 	private void render() {  //used in run()
 		
-		bs = display.getcanvas().getBufferStrategy(); //this gets our canvas' BufferStrategy, which is a imported class
-		if(bs == null) {  //if there is no current buffer strategy run this
+		bs = display.getcanvas().getBufferStrategy(); 
+		if(bs == null) { 
 			display.getcanvas().createBufferStrategy(3); 
-			// i believe this creates 3 buffers in advance and runs when the last 3 run out.
+			
 	    	return;			
 		}
-		g = bs.getDrawGraphics();	//another imported class i don't quite understand
-		g.clearRect(0, 0, width, height);  //clears whole screen
-		//draw
-		if (State.getState() != null)	//this runs as long as State does NOT equal null, which it doesn't
-		    State.getState().render(g);	//this will run the render() method of whatever method is being used
+		g = bs.getDrawGraphics();	
+		g.clearRect(0, 0, width, height); 
+
+		if (State.getState() != null)	
+		    State.getState().render(g);	
 		
 		g.setColor(Color.red);
 		g.fillRect(handler.getMouseManager().getMouseX() - 2, 
 				handler.getMouseManager().getMouseY() - 2,
 				4, 4);
-		//g gets passed through and holds the graphics
-		//end draw
-		bs.show();		//uses the next buffer
-		g.dispose();	//deletes the graphics in g
+
+		bs.show();	
+		g.dispose();
 	}
 	
 	
@@ -171,12 +168,11 @@ public class Game implements Runnable {
 	}
 	
 	public synchronized void start() {
-		if (running)	//stops potential errors. ignore
+		if (running)	
 			return;
-		running = true;  //sets running to true which allows other methods to run
-		thread = new Thread(this);  //thread is the Game Thread(). when used it will run the Run() method of Game
-		thread.start();	//this runs the thread . This will run the Run() method
-		System.out.println("Game.start()");
+		running = true;  
+		thread = new Thread(this); 
+		thread.start();	
 	}
 
 	public synchronized void stop() {
