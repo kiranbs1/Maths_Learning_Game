@@ -20,24 +20,24 @@ import Maths_Learning_Game.states.TorS;
 
 public class Game implements Runnable {
 
-	private Display display;  			//this is variable created from my class, Display. it is used to created the JFrame and panel.
-	private int width, height;			//private integers used to determine the width and height of the JFrame in pixels
-	public String title;				//this will be the title of the JFrame and will appear at the top of it
-	private Thread thread;				//This is used to run the thread which this program runs on. I am only using one thread because i think more threads would be redundant
-	private boolean running = false;	//this is only used to stop the potential error of the programming running itself more than once.
-	private BufferStrategy bs;			//This is used to create a bufferstrategy which used as a medium between rendering and displaying pixels.  
-	private Graphics g;					//This is used to contain all graphics and is used in every render class
-	private int rTimer;					//this is used as a count down clock
+	private Display display;  			
+	private int width, height;			
+	public String title;				
+	private Thread thread;				
+	private boolean running = false;	
+	private BufferStrategy bs;			
+	private Graphics g;					
+	private int rTimer;					
 	//user
 	private boolean teacher = true;
 	//player
-	private int CurrentScore;				//this holds the current players score from the session which they just played
+	private int CurrentScore;				
 	//Background sound
-	private Clip clip;					//This is used to hold my sound clip
+	private Clip clip;					
 	//state
-	public State gamestate;			//created from class
-	public State menustate;			//created from class
-	public State settingsstate;		//created from class
+	public State gamestate;			
+	public State menustate;			
+	public State settingsstate;		
 	public State PauseState;
 	public State LoginState;
 	public State TeacherMenuState;
