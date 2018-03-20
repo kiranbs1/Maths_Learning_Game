@@ -66,10 +66,6 @@ public class Player extends Entity {
 	public void postRender(Graphics g) {		
 	}
 	
-	public void restart() {
-		CantMove = false;
-	}
-	
 	private void getInput() { //gets keyboard inputs
 		
 		xmove = 0;
