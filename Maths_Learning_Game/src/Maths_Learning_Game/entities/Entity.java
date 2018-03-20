@@ -19,7 +19,6 @@ public abstract class Entity {
 	
 	protected float speed;  
 	protected float xmove, ymove;
-	protected boolean HitAWallX = false, HitAWallY = false;
 	
 	public Entity(Handler handler ,float x, float y, int width, int height) {
 		this.handler = handler;
