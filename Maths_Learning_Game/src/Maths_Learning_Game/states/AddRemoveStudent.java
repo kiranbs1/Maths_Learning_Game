@@ -85,23 +85,6 @@ public class AddRemoveStudent extends State{
 		
 	}
 	
-	public void AddStudent(){
-		try {
-			DatabaseCommands.createStudent("HI", "123", handler.getAllDataRecords().getTeacher().getID());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void DeleteStudent(){
-		try {
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
 	public void tick() {
 		if(handler.getMouseManager().isLeftPressed()) {
 			enterUserName = false;
